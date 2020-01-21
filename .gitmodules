@@ -1,0 +1,6 @@
+[submodule "temi-android-shortcut-template"]
+	path = temi-android-shortcut-template
+	url = https://github.com/ray-hrst/temi-android-shortcut-template.git
+[submodule "temi-launcher-shortcut-template"]
+	path = temi-launcher-shortcut-template
+	url = https://github.com/ray-hrst/temi-launcher-shortcut-template.git
