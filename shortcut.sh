@@ -28,10 +28,12 @@
 # SOFTWARE.
 #
 
+# abort if any command fails
+set -e
+
 # constants
 DEFAULT_ANDROID_HOME=~/Android/Sdk # default location on Linux
-GIT_REPO_NAME="temi-android-shortcut-template"
-VERSION="1.0.2-alpha"
+SHORTCUT_TEMPLATE_DIR="temi-launcher-shortcut-template"
 
 # display usage instructions
 usage()
@@ -43,7 +45,6 @@ usage()
   echo ""
   echo "dependencies:"
   echo ""
-  echo "  - curl"
   echo "  - Android-SDK with the ANDROID_HOME environment variable"
   echo "    set appropriately."
   echo ""
@@ -95,18 +96,11 @@ else
   SHORTCUT_NAME=$2
 fi
 
-# get shortcut-template
-echo "Downloading template..."
-curl -LJO "https://github.com/ray-hrst/${GIT_REPO_NAME}/archive/v${VERSION}.tar.gz"
-# wget --no-check-certificate --content-disposition https://github.com/ray-hrst/temi-app-shortcut/archive/v1.0.0.tar.gz
-
-# decompress
-echo "Decompressing template..."
-tar -xzf "${GIT_REPO_NAME}-${VERSION}.tar.gz"
-rm "${GIT_REPO_NAME}-${VERSION}.tar.gz"
+# make a copy of the template
+cp -avr "${SHORTCUT_TEMPLATE_DIR}" tmp
 
 # enter shortcut-template source code root directory
-cd "${GIT_REPO_NAME}-${VERSION}"
+cd tmp
 
 # rename package
 # - lower case letters
@@ -163,7 +157,7 @@ cp -v app/build/outputs/apk/debug/app-debug.apk "../${SHORTCUT_NAME_UNDERSCORE}_
 # clean up
 echo "Cleaning up..."
 cd ../
-rm -fr "${GIT_REPO_NAME}-${VERSION}"
+rm -fr tmp
 echo "Done"
 echo ""
 
