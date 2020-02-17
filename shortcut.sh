@@ -162,7 +162,5 @@ echo "Done"
 echo ""
 
 # installation instructions
-echo "Remember to install both the package and package-shortcut:"
-echo "├─ ${PACKAGE_NAME}"
-echo "└─./${SHORTCUT_NAME_UNDERSCORE}_shortcut.apk"
+echo "Remember to install both the package and package-shortcut."
 exit 0
