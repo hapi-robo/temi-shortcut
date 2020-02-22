@@ -33,13 +33,13 @@ set -e
 
 # constants
 DEFAULT_ANDROID_HOME=~/Android/Sdk # default location on Linux
-SHORTCUT_TEMPLATE_DIR="temi-launcher-shortcut-template"
+TEMPLATE_DIR="temi-launcher-shortcut-template"
 
 # display usage instructions
 usage()
 {
   echo ""
-  echo "usage: shortcut.sh <package-name> <shortcut_name>"
+  echo "usage: shortcut.sh <package-name> <shortcut-name>"
   echo ""
   echo "Creates a shortcut for APK file"
   echo ""
@@ -51,7 +51,7 @@ usage()
   echo "positional arguments:"
   echo ""
   echo "  package-name          Android application package name"
-  echo "  shortcut_name         Shortcut name. Use double-quotes to encapsulate"
+  echo "  shortcut-name         Shortcut name. Use double-quotes to encapsulate"
   echo "                        a name with whitespace."
   echo ""
   exit 1
@@ -80,9 +80,9 @@ else
 	set_android_home
 fi
 
-# check for APK file
+# check for package name
 if [ -z "$1" ]; then
-  echo "Missing package file"
+  echo "Missing package name"
   usage
 else
   PACKAGE_NAME=$1
@@ -97,7 +97,7 @@ else
 fi
 
 # make a copy of the template
-cp -avr "${SHORTCUT_TEMPLATE_DIR}" tmp
+cp -avr "${TEMPLATE_DIR}" tmp
 
 # enter shortcut-template source code root directory
 cd tmp
