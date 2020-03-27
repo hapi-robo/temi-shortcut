@@ -63,7 +63,7 @@ positional arguments:
 ### shortcut.sh
 Creates an APK (visible on temi's Launcher) that launches another APK. This can be used to run APKs that are hidden from temi's Launcher.
 ```
-usage: shortcut.sh <package-name> <shortcut_name>
+usage: shortcut.sh <package-name> <shortcut-name>
 
 Creates a shortcut for APK file
 
@@ -75,7 +75,7 @@ dependencies:
 positional arguments:
 
   package-name          Android application package name
-  shortcut_name         Shortcut name. Use double-quotes to encapsulate
+  shortcut-name         Shortcut name. Use double-quotes to encapsulate
                         a name with whitespace.
 ```
 

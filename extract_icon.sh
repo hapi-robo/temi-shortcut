@@ -1,9 +1,9 @@
 #!/bin/sh
 #
-# Returns the APK's package-name
+# Extracts icon from APK
 #
 # Usage
-#	  ./package_name.sh <apk>
+#	  ./extract_icon.sh <apk>
 #
 # Dependencies
 #   - Android SDK, see: https://www.androidcentral.com/installing-android-sdk-windows-mac-and-linux-tutorial
@@ -34,13 +34,16 @@
 # abort if any command fails
 set -e
 
+# constants
+THIS_DIR="$PWD"
+
 # display usage instructions
 usage()
 {
   echo ""
-  echo "usage: package_name.sh <apk>"
+  echo "usage: extract_icon.sh <apk>"
   echo ""
-  echo "Returns the APK's package-name"
+  echo "Extracts icon from APK"
   echo ""
   echo "dependencies:"
   echo ""
@@ -62,9 +65,18 @@ else
   APK_FILENAME=$1
 fi
 
-# get package name
-PACKAGE_NAME="$(aapt dump badging "${APK_FILENAME}" | awk -F "[='|' ]" '/package: / {print $4}')"
+# get icon path
+ICON_PATH="$(aapt dump badging "${APK_FILENAME}" | awk -F "[='|' ]" '/application: / {print $8}')"
 
-# output package name
-echo "${PACKAGE_NAME}"
-exit 0
+# check that icon exists
+FILE_EXTENSION="$(echo "${ICON_PATH}" | awk -F . '{print $NF}')"
+if [ "${FILE_EXTENSION}" != "png" ]; then
+  echo "[Error] Icon not found"
+  exit 1
+else
+  rm -fr "/tmp/apk"
+  unzip -q "${APK_FILENAME}" -d "/tmp/apk"
+  cp "/tmp/apk/${ICON_PATH}" "${THIS_DIR}/icon.png"
+  echo "${THIS_DIR}/icon.png"
+  exit 0
+fi
