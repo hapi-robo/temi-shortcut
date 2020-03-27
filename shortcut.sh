@@ -33,7 +33,7 @@ set -e
 
 # constants
 DEFAULT_ANDROID_HOME=~/Android/Sdk # default location on Linux
-TEMPLATE_DIR="temi-launcher-shortcut-template"
+TEMPLATE_DIR="template"
 THIS_DIR="$PWD"
 
 # display usage instructions
