@@ -46,7 +46,7 @@ usage()
   echo ""
   echo "dependencies:"
   echo ""
-  echo "  - Android-SDK with the ANDROID_HOME environment variable"
+  echo "  - Android SDK with the ANDROID_HOME environment variable"
   echo "    set appropriately."
   echo ""
   echo "positional arguments:"
@@ -66,7 +66,9 @@ set_android_home()
 		export ANDROID_HOME=${DEFAULT_ANDROID_HOME}
 		echo "export ANDROID_HOME=${ANDROID_HOME}"
 	else
-		echo "[Error] Android SDK cannot be found. Please set the ANDROID_HOME environment variable to your Android-SDK's (Android/Sdk) path."
+		echo "[Error] Android SDK cannot be found. Set the ANDROID_HOME environment variable to your Android SDK's path, i.e. Android/Sdk/"
+    # echo "[Error] Android SDK cannot be found. Set the ANDROID_SDK_ROOT environment variable to your Android SDK's path, i.e. Android/Sdk/"
+    exit 1
 	fi
 }
 
@@ -153,5 +155,6 @@ mv -v app/src/main/java/com/hapirobo/shortcut_template "app/src/main/java/com/ha
 cp -v app/build/outputs/apk/debug/app-debug.apk "${THIS_DIR}/${SHORTCUT_NAME_UNDERSCORE}_shortcut.apk"
 
 # installation instructions
-echo "Remember to install both the package and package-shortcut."
+echo ""
+echo "Remember to install both the App and App-shortcut."
 exit 0
