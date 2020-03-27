@@ -46,8 +46,8 @@ usage()
   echo ""
   echo "dependencies:"
   echo ""
-  echo "  - Android SDK with the ANDROID_HOME environment variable"
-  echo "    set appropriately."
+  echo "  Android SDK with the ANDROID_HOME environment variable"
+  echo "  set appropriately."
   echo ""
   echo "positional arguments:"
   echo ""
@@ -55,7 +55,6 @@ usage()
   echo "  shortcut-name         Shortcut name. Use double-quotes to encapsulate"
   echo "                        a name with whitespace."
   echo ""
-  exit 1
 }
 
 # attempt to automatically set ANDROID_HOME environment variable
@@ -87,6 +86,7 @@ fi
 if [ -z "$1" ]; then
   echo "Missing package name"
   usage
+  exit 1
 else
   PACKAGE_NAME=$1
 fi
@@ -95,6 +95,7 @@ fi
 if [ -z "$2" ]; then
   echo "Missing shortcut name"
   usage
+  exit 1
 else
   SHORTCUT_NAME=$2
 fi
@@ -152,9 +153,10 @@ mv -v app/src/main/java/com/hapirobo/shortcut_template "app/src/main/java/com/ha
 ./gradlew build
 
 # move shortcut-APK to root directory
-cp -v app/build/outputs/apk/debug/app-debug.apk "${THIS_DIR}/${SHORTCUT_NAME_UNDERSCORE}_shortcut.apk"
+cp app/build/outputs/apk/debug/app-debug.apk "${THIS_DIR}/${SHORTCUT_NAME_UNDERSCORE}_shortcut.apk"
 
 # installation instructions
 echo ""
+echo "${THIS_DIR}/${SHORTCUT_NAME_UNDERSCORE}_shortcut.apk"
 echo "Remember to install both the App and App-shortcut."
 exit 0
