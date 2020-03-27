@@ -34,6 +34,7 @@ set -e
 # constants
 DEFAULT_ANDROID_HOME=~/Android/Sdk # default location on Linux
 TEMPLATE_DIR="temi-launcher-shortcut-template"
+THIS_DIR="$PWD"
 
 # display usage instructions
 usage()
@@ -96,11 +97,14 @@ else
   SHORTCUT_NAME=$2
 fi
 
+# remove existing directory if any
+rm -fr "/tmp/${SHORTCUT_NAME}"
+
 # make a copy of the template
-cp -avr "${TEMPLATE_DIR}" tmp
+cp -avr "${TEMPLATE_DIR}" "/tmp/${SHORTCUT_NAME}"
 
 # enter shortcut-template source code root directory
-cd tmp
+cd "/tmp/${SHORTCUT_NAME}"
 
 # rename package
 # - lower case letters
@@ -123,8 +127,6 @@ if [ ${MACHINE} = "Linux" ]; then
   sed -i "s/shortcut_template/shortcut_${SHORTCUT_NAME_UNDERSCORE}/" app/build.gradle
   sed -i "s/shortcut_template/shortcut_${SHORTCUT_NAME_UNDERSCORE}/" app/src/main/AndroidManifest.xml
   sed -i "s/shortcut_template/shortcut_${SHORTCUT_NAME_UNDERSCORE}/" app/src/main/java/com/hapirobo/shortcut_template/MainActivity.java
-  sed -i "s/shortcut_template/shortcut_${SHORTCUT_NAME_UNDERSCORE}/" app/src/androidTest/java/com/hapirobo/shortcut_template/ExampleInstrumentedTest.java
-  sed -i "s/shortcut_template/shortcut_${SHORTCUT_NAME_UNDERSCORE}/" app/src/test/java/com/hapirobo/shortcut_template/ExampleUnitTest.java
   sed -i "s/shortcut_name/${SHORTCUT_NAME}/" app/src/main/res/values/strings.xml
   sed -i "s/com.hapirobo.package_name/${PACKAGE_NAME}/" app/src/main/res/values/strings.xml
 elif [ ${MACHINE} = "Darwin" ]; then
@@ -133,8 +135,6 @@ elif [ ${MACHINE} = "Darwin" ]; then
   sed -i .bak "s/shortcut_template/shortcut_${SHORTCUT_NAME_UNDERSCORE}/" app/build.gradle
   sed -i .bak "s/shortcut_template/shortcut_${SHORTCUT_NAME_UNDERSCORE}/" app/src/main/AndroidManifest.xml
   sed -i .bak "s/shortcut_template/shortcut_${SHORTCUT_NAME_UNDERSCORE}/" app/src/main/java/com/hapirobo/shortcut_template/MainActivity.java
-  sed -i .bak "s/shortcut_template/shortcut_${SHORTCUT_NAME_UNDERSCORE}/" app/src/androidTest/java/com/hapirobo/shortcut_template/ExampleInstrumentedTest.java
-  sed -i .bak "s/shortcut_template/shortcut_${SHORTCUT_NAME_UNDERSCORE}/" app/src/test/java/com/hapirobo/shortcut_template/ExampleUnitTest.java
   sed -i .bak "s/shortcut_name/${SHORTCUT_NAME}/" app/src/main/res/values/strings.xml
   sed -i .bak "s/com.hapirobo.package_name/${PACKAGE_NAME}/" app/src/main/res/values/strings.xml
 else
@@ -144,22 +144,13 @@ fi
 
 # rename directories
 mv -v app/src/main/java/com/hapirobo/shortcut_template "app/src/main/java/com/hapirobo/shortcut_${SHORTCUT_NAME_UNDERSCORE}"
-mv -v app/src/androidTest/java/com/hapirobo/shortcut_template "app/src/androidTest/java/com/hapirobo/shortcut_${SHORTCUT_NAME_UNDERSCORE}"
-mv -v app/src/test/java/com/hapirobo/shortcut_template "app/src/test/java/com/hapirobo/shortcut_${SHORTCUT_NAME_UNDERSCORE}"
 
 # build shortcut-APK
 ./gradlew clean
 ./gradlew build
 
 # move shortcut-APK to root directory
-cp -v app/build/outputs/apk/debug/app-debug.apk "../${SHORTCUT_NAME_UNDERSCORE}_shortcut.apk"
-
-# clean up
-echo "Cleaning up..."
-cd ../
-rm -fr tmp
-echo "Done"
-echo ""
+cp -v app/build/outputs/apk/debug/app-debug.apk "${THIS_DIR}/${SHORTCUT_NAME_UNDERSCORE}_shortcut.apk"
 
 # installation instructions
 echo "Remember to install both the package and package-shortcut."
