@@ -1,2 +1,12 @@
-test/
+*.iml
+.gradle
+local.properties
+.idea
+.DS_Store
+build
 *.apk
+*.png
+captures
+test/
+.externalNativeBuild
+secrets.properties

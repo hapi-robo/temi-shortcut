@@ -11,8 +11,6 @@ Clone the repository and update submodules:
 ```
 git clone https://github.com/ray-hrst/temi-shortcut.git
 cd temi-shortcut/
-git submodule init
-git submodule update
 ```
 
 Get the APK's `package-name`:
