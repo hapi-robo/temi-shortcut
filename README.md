@@ -34,9 +34,9 @@ The file `chrome_shortcut.apk` should then appear in the same directory.
 
 
 ## Dependencies
-For scripts in this repository require the Android SDK, see [Android SDK installation instructions](https://www.androidcentral.com/installing-android-sdk-windows-mac-and-linux-tutorial) for installation details. Once installed, export the SDK's path to the `ANDROID_HOME` environment variable, for example:
+Scripts in this repository require the Android SDK, see [Android SDK installation instructions](https://www.androidcentral.com/installing-android-sdk-windows-mac-and-linux-tutorial) for installation details. Once installed, export the SDK's path to the `ANDROID_HOME` environment variable, for example:
 ```
-export=/path/to/Android/Sdk/
+export ANDROID_HOME=/path/to/Android/Sdk/
 ```
 
 
