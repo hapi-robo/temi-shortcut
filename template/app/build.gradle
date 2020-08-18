@@ -30,5 +30,5 @@ dependencies {
 
     // temi
     // https://github.com/robotemi/sdk
-    implementation 'com.robotemi:sdk:0.10.55'
+    implementation 'com.robotemi:sdk:0.10.65'
 }
