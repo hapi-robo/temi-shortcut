@@ -7,30 +7,38 @@ These scripts have currently been tested on:
 
 
 ## TL;DR
-Clone the repository and update submodules:
+Clone the repository:
 ```
-git clone https://github.com/ray-hrst/temi-shortcut.git
+git clone https://github.com/hapi-robo/temi-shortcut.git
 cd temi-shortcut/
 ```
 
-Get the APK's `package-name`:
-```
-./package_name.sh <apk>
-```
-
-This will output the APK's `package-name`, which is used in the following:
+Create shortcut:
 ```
 ./shortcut.sh <package-name> <shortcut-name>
 ```
 
 For example, to create a shortcut for Chrome:
 ```
-$ ./package_name.sh chrome.apk
-com.android.chrome
-$ ./shortcut.sh com.android.chrome "Chrome"
+./shortcut.sh com.android.chrome "Chrome"
 ```
 
-The file `chrome_shortcut.apk` should then appear in the same directory.
+The file `chrome_shortcut.apk` should then appear in the same directory. Install it onto your device, along with the package that it links to. For this example:
+```
+adb install chrome.apk
+adb install chrome_shortcut.apk
+```
+
+### APK Package-Name
+If the APK is already installed on the device, you can look for it using:
+```
+adb shell pm list packages
+```
+
+If the package is on your computer, you can run the following script:
+```
+./package_name.sh <apk>
+```
 
 
 ## Dependencies
@@ -41,23 +49,6 @@ export ANDROID_HOME=/path/to/Android/Sdk/
 
 
 ## Usage
-### package_name.sh
-Returns an APK's the package-name.
-```
-usage: package_name.sh <apk>
-
-Returns the APK's package-name
-
-dependencies:
-
-  This script depends on having the Android-SDK installed and having the
-  the ANDROID_HOME environment variable set appropriately.
-
-positional arguments:
-
-  apk           APK filename (.apk)
-```
-
 ### shortcut.sh
 Creates an APK (visible on temi's Launcher) that launches another APK. This can be used to run APKs that are hidden from temi's Launcher.
 ```
@@ -77,3 +68,19 @@ positional arguments:
                         a name with whitespace.
 ```
 
+### package_name.sh
+Returns an APK's package-name.
+```
+usage: package_name.sh <apk>
+
+Returns the APK's package-name
+
+dependencies:
+
+  This script depends on having the Android-SDK installed and having the
+  the ANDROID_HOME environment variable set appropriately.
+
+positional arguments:
+
+  apk           		APK filename (.apk)
+```
