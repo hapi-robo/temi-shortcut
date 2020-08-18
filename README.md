@@ -42,7 +42,7 @@ If the package is on your computer, you can run the following script:
 
 
 ## Dependencies
-Scripts in this repository require the Android SDK, see [Android SDK installation instructions](https://www.androidcentral.com/installing-android-sdk-windows-mac-and-linux-tutorial) for installation details. Once installed, export the SDK's path to the `ANDROID_HOME` environment variable, for example:
+Scripts in this repository require the Android SDK, which is included in [Android Studio](https://developer.android.com/studio/). Once installed, export the SDK's path to the `ANDROID_HOME` environment variable, for example:
 ```
 export ANDROID_HOME=/path/to/Android/Sdk/
 ```
