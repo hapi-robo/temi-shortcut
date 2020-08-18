@@ -6,6 +6,18 @@ These scripts have currently been tested on:
 * Ubuntu 18.04
 
 
+## Prerequisites
+Scripts in this repository require the Android SDK, see [Android SDK installation instructions](https://www.androidcentral.com/installing-android-sdk-windows-mac-and-linux-tutorial) for installation details. Once installed, export the SDK's path to the `ANDROID_HOME` environment variable, for example:
+```
+export ANDROID_HOME=/path/to/Android/Sdk/
+```
+
+To run `package_name.sh`, you will need `aapt` installed in `/usr/bin/`:
+```
+sudo apt install aapt
+```
+
+
 ## TL;DR
 Clone the repository:
 ```
