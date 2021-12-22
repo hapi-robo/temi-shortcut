@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.provider.Settings;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void launchApp(String packageName) {
-        Intent mIntent = getPackageManager().getLaunchIntentForPackage(packageName);
+//        Intent mIntent = getPackageManager().getLaunchIntentForPackage(packageName);
+        Intent mIntent = new Intent(Settings.ACTION_CAST_SETTINGS);
 
         if (mIntent != null) {
             try {
