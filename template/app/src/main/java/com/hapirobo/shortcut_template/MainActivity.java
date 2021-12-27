@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     protected void launchApp(String packageName) {
 //        Intent mIntent = getPackageManager().getLaunchIntentForPackage(packageName);
+
+        // https://developer.android.com/reference/android/provider/Settings.html
         Intent mIntent = new Intent(Settings.ACTION_CAST_SETTINGS);
 
         if (mIntent != null) {
