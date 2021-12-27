@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Cast</string>
+    <string name="app_name">Cast Settings</string>
     <string name="package_name">com.hapirobo.settings_cast</string>
     <string name="app_not_found">App not found</string>
 </resources>
