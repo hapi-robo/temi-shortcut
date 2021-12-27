@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 //        Intent mIntent = getPackageManager().getLaunchIntentForPackage(packageName);
 
         // https://developer.android.com/reference/android/provider/Settings.html
-        Intent mIntent = new Intent(Settings.ACTION_CAST_SETTINGS);
+        Intent mIntent = new Intent(Settings.ACTION_WIFI_SETTINGS);
 
         if (mIntent != null) {
             try {
