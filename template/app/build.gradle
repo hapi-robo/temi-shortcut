@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.hapirobo.shortcut_template"
+        applicationId "com.hapirobo.settings_bluetooth"
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
