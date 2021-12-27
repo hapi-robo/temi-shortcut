@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android Wi-Fi Settings</string>
+    <string name="app_name">Wi-Fi Settings</string>
     <string name="package_name">com.hapirobo.settings_wifi</string>
     <string name="app_not_found">App not found</string>
 </resources>
