@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android Bluetooth Settings</string>
+    <string name="app_name">Bluetooth Settings</string>
     <string name="package_name">com.hapirobo.settings_bluetooth</string>
     <string name="app_not_found">App not found</string>
 </resources>
